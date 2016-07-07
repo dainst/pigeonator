@@ -17,8 +17,8 @@ public class JsonUtils {
     public static JsonNode stringToJson(String stringyfiedJson) {
         try {
             return new ObjectMapper().readTree(stringyfiedJson);
-        } catch (IOException error) {
-            System.out.println(error);
+        } catch (IOException ex) {
+            System.out.println(ex);
             return null;
         }
     }

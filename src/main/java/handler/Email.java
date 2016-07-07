@@ -1,4 +1,5 @@
 package handler;
+import javax.mail.Address;
 
 /**
  * @author Patrick Jominet
