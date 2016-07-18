@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '1.2.2'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
 sourceCompatibility = 1.8
@@ -14,7 +14,6 @@ repositories {
 
 dependencies {
     compile 'com.sparkjava:spark-core:2.2'
-    compile 'com.twilio.sdk:twilio-java-sdk:4.4.5'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.5'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
     compile 'com.sun.mail:javax.mail:1.5.5'

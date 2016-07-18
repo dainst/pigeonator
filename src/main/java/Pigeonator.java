@@ -1,6 +1,8 @@
 import com.fasterxml.jackson.databind.JsonNode;
 import handler.Email;
 import utils.JsonUtils;
+import utils.RegexUtils;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
@@ -20,7 +22,10 @@ public class Pigeonator {
             if (node == null) {
                 response.status(400);
                 return "An error has occurred during parsing input";
-            } else {
+            } else if (RegexUtils.validateEmail(node.get("email").asText()) &&
+                    RegexUtils.validateEmail(node.get("to").asText()) &&
+                    node.get("subject") != null && !node.get("subject").asText().isEmpty() &&
+                    node.get("message") != null && !node.get("message").asText().isEmpty()) {
                 // Create Mail
                 Email emailToSend = new Email(
                         node.get("email").asText(),
@@ -29,19 +34,16 @@ public class Pigeonator {
                         node.get("subject").asText(),
                         node.get("message").asText()
                 );
-                System.out.println(emailToSend.toString());
 
                 // Assuming you are sending email from localhost
                 String host = "smtp.uni-koeln.de";
 
-                // Get system properties
                 Properties properties = System.getProperties();
                 // Setup mail server
                 properties.setProperty("mail.smtp.host", host);
-                // Get the default Session object.
                 Session session = Session.getDefaultInstance(properties);
 
-                try{
+                try {
                     // Create a default MimeMessage object.
                     MimeMessage message = new MimeMessage(session);
 
@@ -56,18 +58,18 @@ public class Pigeonator {
                     message.setSubject(emailToSend.getSubject());
                     message.setText(
                             "From: " + emailToSend.getName() + "\n" +
-                            emailToSend.getMessage()
+                                    emailToSend.getMessage()
                     );
 
                     // Send message
                     Transport.send(message);
                     System.out.println("Sent message successfully....");
 
-                }catch (MessagingException mex) {
+                } catch (MessagingException mex) {
                     mex.printStackTrace();
                 }
-            }
-            return "Success";
+                return "Success";
+            } else return "Invalid Email Address";
         });
     }
 }

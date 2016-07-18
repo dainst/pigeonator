@@ -1,7 +1,9 @@
-# pigeonator  
+# pigeonator
+
+##Configuration
+
+Copy and rename config.properties.template to config.properties to ensure proper functionality.
 
 ##Building jar
-  
-* Open gradle project panel   
-* Tasks -> shadow   
-* double-click shadowJar to compile the jar file with all dependencies
+
+* gradle clean build shadowJar
