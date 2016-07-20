@@ -6,6 +6,7 @@ Copy and rename config.properties.template to config.properties to ensure proper
 
 ##Building jar
 
+`gradle clean`
 `gradle shadowJar`
 
 This command builds a single uber-jar containing all dependencies.
