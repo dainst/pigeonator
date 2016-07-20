@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.JsonNode;
 import handler.Email;
 import utils.JsonUtils;
 import utils.RegexUtils;
@@ -11,6 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.logging.log4j.*;
+
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -19,13 +21,18 @@ import static spark.Spark.post;
  */
 public class Pigeonator {
 
+    private static final Logger logger = LogManager.getLogger(Pigeonator.class);
+    private static String errorMessage = "";
+
     public static void main(String[] args) {
         get("/mail", (request, response) -> "Your carrier pigeon is ready for takeoff.");
         post("/mail", (request, response) -> {
             JsonNode node = JsonUtils.stringToJson(request.body());
             if (node == null) {
                 response.status(400);
-                return "An error has occurred during parsing input";
+                errorMessage = "An error has occurred during parsing input";
+                logger.error(errorMessage);
+                return errorMessage;
             } else if (RegexUtils.validateEmail(node.get("email").asText()) &&
                     RegexUtils.validateEmail(node.get("to").asText()) &&
                     node.get("subject") != null && !node.get("subject").asText().isEmpty() &&
@@ -44,6 +51,7 @@ public class Pigeonator {
                     InputStream stream = new FileInputStream(new File("config/config.properties"));
                     config.load(stream);
                 } catch (IOException ioex) {
+                    logger.error(ioex);
                     ioex.printStackTrace();
                 }
 
@@ -78,10 +86,15 @@ public class Pigeonator {
                     System.out.println("Sent message successfully....");
 
                 } catch (MessagingException mex) {
+                    logger.error(mex);
                     mex.printStackTrace();
                 }
                 return "Success";
-            } else return "Invalid input";
+            } else {
+                errorMessage = "Invalid input";
+                logger.error(errorMessage);
+                return errorMessage;
+            }
         });
     }
 }
