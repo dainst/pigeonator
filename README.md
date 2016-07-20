@@ -1,4 +1,4 @@
-# pigeonator
+#pigeonator
 
 ##Configuration
 
@@ -6,4 +6,8 @@ Copy and rename config.properties.template to config.properties to ensure proper
 
 ##Building jar
 
-* gradle clean build shadowJar
+* gradle shadowJar
+
+This command builds a single uber-jar containing all dependencies.
+
+-> build/libs/pigeonator-all.jar
