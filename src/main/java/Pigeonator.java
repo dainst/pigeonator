@@ -5,6 +5,8 @@ import utils.RegexUtils;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -39,8 +41,7 @@ public class Pigeonator {
 
                 Properties config = new Properties();
                 try {
-                    ClassLoader loader = Thread.currentThread().getContextClassLoader();
-                    InputStream stream = loader.getResourceAsStream("/config/config.properties");
+                    InputStream stream = new FileInputStream(new File("config/config.properties"));
                     config.load(stream);
                 } catch (IOException ioex) {
                     ioex.printStackTrace();
