@@ -5,6 +5,8 @@ import utils.RegexUtils;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 import static spark.Spark.get;
@@ -35,8 +37,17 @@ public class Pigeonator {
                         node.get("message").asText()
                 );
 
+                Properties config = new Properties();
+                try {
+                    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                    InputStream stream = loader.getResourceAsStream("/config/config.properties");
+                    config.load(stream);
+                } catch (IOException ioex) {
+                    ioex.printStackTrace();
+                }
+
                 // Assuming you are sending email from localhost
-                String host = "smtp.uni-koeln.de";
+                String host = config.getProperty("smtp");
 
                 Properties properties = System.getProperties();
                 // Setup mail server
@@ -69,7 +80,7 @@ public class Pigeonator {
                     mex.printStackTrace();
                 }
                 return "Success";
-            } else return "Invalid Email Address";
+            } else return "Invalid input";
         });
     }
 }
