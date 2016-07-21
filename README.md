@@ -1,5 +1,9 @@
 #pigeonator
 
+##Prerequisits
+
+Install Gradle 2.12 or newer
+
 ##Configuration
 
 Copy and rename config.properties.template to config.properties and mailingList.json.template to mailingList.json to ensure proper functionality.
