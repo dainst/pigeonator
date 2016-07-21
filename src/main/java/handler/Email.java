@@ -1,39 +1,38 @@
 package handler;
-import javax.mail.Address;
 
 /**
  * @author Patrick Jominet
  */
 public class Email {
 
-    private String from;
-    private String to;
+    private String sender;
+    private String recipient;
     private String name;
     private String subject;
     private String message;
 
-    public Email(String from, String to, String name, String subject, String message) {
-        this.from = from;
-        this.to = to;
+    public Email(String sender, String recipient, String name, String subject, String message) {
+        this.sender = sender;
+        this.recipient = recipient;
         this.name = name;
         this.subject = subject;
         this.message = message;
     }
 
-    public String getFrom() {
-        return from;
+    public String getSender() {
+        return sender;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
-    public String getTo() {
-        return to;
+    public String getRecipient() {
+        return recipient;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
     }
 
     public String getName() {
@@ -63,8 +62,8 @@ public class Email {
     @Override
     public String toString() {
         return "Email{" +
-                "from='" + from + '\'' +
-                ", to='" + to + '\'' +
+                "sender='" + sender + '\'' +
+                ", recipient='" + recipient + '\'' +
                 ", name='" + name + '\'' +
                 ", subject='" + subject + '\'' +
                 ", message='" + message + '\'' +
