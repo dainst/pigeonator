@@ -9,6 +9,8 @@ Copy and rename config.properties.template to config.properties and mailingList.
 `gradle clean`
 `gradle shadowJar`
 
-This command builds a single uber-jar containing all dependencies.
+This command builds a single uber-jar containing all dependencies that can be found here.
 
-_build/libs/pigeonator-all.jar_
+```
+build/libs/pigeonator-all.jar
+```
