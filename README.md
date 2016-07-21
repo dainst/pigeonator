@@ -2,7 +2,8 @@
 
 ##Prerequisits
 
-Install Gradle 2.12 or newer
+* Gradle 2.12 or newer
+* Java 8 or newer
 
 ##Configuration
 
