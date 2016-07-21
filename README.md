@@ -2,7 +2,7 @@
 
 ##Configuration
 
-Copy and rename config.properties.template to config.properties to ensure proper functionality.
+Copy and rename config.properties.template to config.properties and mailingList.json.template to mailingList.json to ensure proper functionality.
 
 ##Building jar
 
