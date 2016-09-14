@@ -1,5 +1,10 @@
 #pigeonator
 
+##Prerequisits
+
+* Gradle 2.12 or newer
+* Java 8 or newer
+
 ##Configuration
 
 Copy and rename config.properties.template to config.properties and mailingList.json.template to mailingList.json to ensure proper functionality.
@@ -9,6 +14,8 @@ Copy and rename config.properties.template to config.properties and mailingList.
 `gradle clean`
 `gradle shadowJar`
 
-This command builds a single uber-jar containing all dependencies.
+This command builds a single uber-jar containing all dependencies that can be found here.
 
-_build/libs/pigeonator.jar_
+```
+build/libs/pigeonator.jar
+```
