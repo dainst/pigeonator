@@ -11,8 +11,7 @@ Copy and rename config.properties.template to config.properties and mailingList.
 
 ##Building jar
 
-`gradle clean`
-`gradle shadowJar`
+`gradle clean shadowJar`
 
 This command builds a single uber-jar containing all dependencies that can be found here.
 
