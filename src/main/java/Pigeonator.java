@@ -58,11 +58,13 @@ public class Pigeonator {
                         } else {
                             errorMessage = "Recipient cannot be found";
                             logger.error(errorMessage);
+                            response.status(500);
                             return errorMessage;
                         }
                     } else {
                         errorMessage = "No mailing address list found";
                         logger.error(errorMessage);
+                        response.status(500);
                         return errorMessage;
                     }
                 } catch (NullPointerException npex) {
@@ -111,10 +113,12 @@ public class Pigeonator {
                     logger.error(mex);
                     mex.printStackTrace();
                 }
+                response.status(200);
                 return "Success";
             } else {
                 errorMessage = "Invalid input";
                 logger.error(errorMessage);
+                response.status(400);
                 return errorMessage;
             }
         });
